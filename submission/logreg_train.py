@@ -35,6 +35,8 @@ if __name__ == "__main__":
 		basepath = ''
 		if len(sys.argv) > 2 and sys.argv[2][-1] == '/' :
 			basepath = ensure_folder_exists(sys.argv[2])
+		elif len(sys.argv) == 2:
+			pass
 		elif not sys.argv[2][-1] == '/':
 			print("error: basepath arg must end by \'/\'")
 			sys.exit(0)
@@ -60,7 +62,6 @@ if __name__ == "__main__":
 		loss_plot = plot_losses(model.losses)
 		acc_plot = plot_accuracy(model.train_accuracies)
 
-		print("lalalala ->", basepath)
 		loss_plot.write_html(basepath + "model_losses.html")
 		acc_plot.write_html(basepath + "accuracy_plot.html")
 
