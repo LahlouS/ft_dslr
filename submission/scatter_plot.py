@@ -61,11 +61,14 @@ if __name__ == "__main__":
 						'Potions', 'Care of Magical Creatures', 'Charms', 'Flying']
 		target_col = 'Hogwarts House'
 
-		datas = Dataloader(filename=filename, 
-					expl_columns=expl_columns, 
-					target_col=target_col,
-					isIndex=True)
-		
+		try:
+			datas = Dataloader(filename=filename, 
+						expl_columns=expl_columns, 
+						target_col=target_col,
+						isIndex=True)
+		except Exception as e:
+			print('ERROR:', e)
+			sys.exit(0)
 		X = np.array(datas._dataframe)
 		corr_mat = zscore_correlation_matrix(X)
 		fig_heatmap = plot_correlation_heatmap(corr_mat, variable_names=datas._dataframe.columns)

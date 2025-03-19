@@ -35,11 +35,14 @@ if len(sys.argv) == 3 and sys.argv[1][-4:] == ".csv" and sys.argv[2][-5:] == ".j
 	expl_columns = ['Best Hand', 'Arithmancy', 'Astronomy', 'Herbology', 'Defense Against the Dark Arts',
 				'Divination', 'Muggle Studies', 'Ancient Runes', 'History of Magic', 'Transfiguration', 
 				'Potions', 'Care of Magical Creatures', 'Charms', 'Flying']
-
-	datas = Dataloader(filename=filename,
-				expl_columns=expl_columns,
-				target_col=None,
-				isIndex=True)
+	try:
+		datas = Dataloader(filename=filename,
+					expl_columns=expl_columns,
+					target_col=None,
+					isIndex=True)
+	except Exception as e:
+		print('ERROR:', e)
+		sys.exit(0)
 
 	model = LogisticRegression(len(datas._dataframe.columns), len(class_name))
 	X = np.array(datas._dataframe)

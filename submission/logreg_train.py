@@ -45,11 +45,15 @@ if __name__ == "__main__":
 						'Potions', 'Care of Magical Creatures', 'Charms', 'Flying']
 		target_col = 'Hogwarts House'
 
-		datas = Dataloader(filename=filename, 
-					expl_columns=expl_columns, 
-					target_col=target_col,
-					isIndex=True)
-
+		try:
+			datas = Dataloader(filename=filename, 
+						expl_columns=expl_columns, 
+						target_col=target_col,
+						isIndex=True)
+		except Exception as e:
+			print('ERROR:', e)
+			sys.exit(0)
+		
 		model = LogisticRegression(len(datas._dataframe.columns), len(datas._classes))
 
 		X = np.array(datas._dataframe)
@@ -57,7 +61,7 @@ if __name__ == "__main__":
 		y = np.array(datas._target_matrix)
 		class_name = datas._classes
 
-		model.fit(X, y, 200, class_name)
+		model.fit(X, y, 300, class_name)
 
 		loss_plot = plot_losses(model.losses)
 		acc_plot = plot_accuracy(model.train_accuracies)

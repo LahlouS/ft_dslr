@@ -17,12 +17,14 @@ if __name__ == "__main__":
 						'Divination', 'Muggle Studies', 'Ancient Runes', 'History of Magic', 'Transfiguration', 
 						'Potions', 'Care of Magical Creatures', 'Charms', 'Flying']
 		target_col = 'Hogwarts House'
-
-		datas = Dataloader(filename=filename, 
-					expl_columns=expl_columns, 
-					target_col=target_col,
-					isIndex=True)
-		
+		try:
+			datas = Dataloader(filename=filename, 
+						expl_columns=expl_columns, 
+						target_col=target_col,
+						isIndex=True)
+		except Exception as e:
+			print('ERROR:', e)
+			sys.exit(0)
 		for i, variable in enumerate(expl_columns):
 			var = variable
 			if var != target_col:
