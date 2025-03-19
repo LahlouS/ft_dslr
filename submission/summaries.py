@@ -104,3 +104,13 @@ def check_null_ish_values(df):
 	})
 	
 	return summary
+
+def custom_mean(data, axis=0):
+	data = np.asarray(data)  # Ensure input is a NumPy array
+	return np.sum(data, axis=axis) / data.shape[axis]
+
+def custom_std(data, axis=0):
+    data = np.asarray(data)  # Ensure input is a NumPy array
+    mean = np.sum(data, axis=axis) / data.shape[axis]  # Compute mean manually
+    variance = np.sum((data - mean) ** 2, axis=axis) / data.shape[axis]  # Variance formula
+    return np.sqrt(variance)

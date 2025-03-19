@@ -2,6 +2,8 @@ import copy
 import numpy as np
 from sklearn.metrics import accuracy_score
 from summaries import statoperation as stats
+from summaries import custom_mean
+
 
 class LogisticRegression():
 	def __init__(self, num_expl_var, num_class):
@@ -42,12 +44,12 @@ class LogisticRegression():
 		# binary cross entropy
 		y_zero_loss = y_true * np.log(y_pred + 1e-9)
 		y_one_loss = (1-y_true) * np.log(1 - y_pred + 1e-9)
-		return -np.mean(y_zero_loss + y_one_loss, axis=0)
+		return -custom_mean(y_zero_loss + y_one_loss, axis=0)
 
 	def compute_gradients(self, x, y_true, y_pred):
 		# derivative of binary cross entropy
 		difference =  y_pred - y_true
-		gradient_b = np.mean(difference, axis=0)
+		gradient_b = custom_mean(difference, axis=0)
 		gradients_w = np.matmul(x.T, difference) * 1/len(y_true) # TODO maybe add 1 / n
 		# gradients_w = np.array([np.mean(grad) for grad in gradients_w])
 		return gradients_w, gradient_b

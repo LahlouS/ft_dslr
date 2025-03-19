@@ -6,14 +6,15 @@ import os
 import pandas as pd
 import json
 import sys
+from summaries import custom_mean, custom_std
 
 def ensure_folder_exists(folder_path):
 	os.makedirs(folder_path, exist_ok=True)
 	return folder_path
 
 def z_normalize(data):
-	mean = np.mean(data, axis=0)
-	std = np.std(data, axis=0, ddof=1)  # Use ddof=1 for sample standard deviation
+	mean = custom_mean(data, axis=0)
+	std = custom_std(data, axis=0)  # Use ddof=1 for sample standard deviation
 	normalized_data = (data - mean) / std
 	return normalized_data, mean, std
 

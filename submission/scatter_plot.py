@@ -2,6 +2,7 @@ from viz import plot_scatter, plot_correlation_heatmap
 from dataloader import Dataloader
 import sys
 import numpy as np
+from summaries import custom_mean, custom_std
 
 def transform_string(s):
 	return "" + s.lower().replace(" ", "_")
@@ -9,8 +10,8 @@ def transform_string(s):
 
 def zscore_correlation_matrix(data):
 	# Compute the mean and standard deviation for each column
-	mean = np.mean(data, axis=0)
-	std = np.std(data, axis=0, ddof=1)  # Use ddof=1 for sample standard deviation
+	mean = custom_mean(data, axis=0)
+	std = custom_std(data, axis=0)  # Use ddof=1 for sample standard deviation
 	
 	# Normalize using z-score
 	normalized_data = (data - mean) / std
