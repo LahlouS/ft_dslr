@@ -24,4 +24,4 @@ if __name__ == "__main__":
 			fig = plot_pairplot(datas._dataframe.drop(columns=col_to_remove), group=datas.classes_original)
 			fig.write_html("viz/pair_plot.html")
 	else:
-		print("Error: arg must be:\n>>> python path/to/describe.py dataset.csv")
+		print("Error: arg must be:\n>>> python path/to/pair_plot.py dataset.csv")

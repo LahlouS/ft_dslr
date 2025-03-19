@@ -51,6 +51,6 @@ if len(sys.argv) == 3 and sys.argv[1][-4:] == ".csv" and sys.argv[2][-5:] == ".j
 	output = pd.DataFrame(output)
 	
 	output.index.name = "Index"
-	output.to_csv(ensure_folder_exists('../prediction/') + 'houses.csv')
+	output.to_csv(ensure_folder_exists('./prediction/') + 'houses.csv')
 else:
 	print("Error: arg must be:\n>>> python path/to/logreg_predict.py dataset_test.csv path/to/weights.json")

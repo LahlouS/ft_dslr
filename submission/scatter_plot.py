@@ -81,6 +81,6 @@ if __name__ == "__main__":
 			to_filex, to_filey = transform_string(varx), transform_string(vary)
 			fig_scatter.write_html(f'viz/scatter_{to_filex}_{to_filey}.html')
 	else:
-		print("Error: arg must be:\n>>> python path/to/describe.py dataset.csv")
+		print("Error: arg must be:\n>>> python path/to/scatter_plot.py dataset.csv")
 
 

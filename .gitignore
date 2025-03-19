@@ -3,3 +3,6 @@ datasets*
 *.json
 __pycache__
 viz/*
+submission/viz
+submission/prediction
+submission/weights

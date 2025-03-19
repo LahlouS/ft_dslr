@@ -61,11 +61,11 @@ if __name__ == "__main__":
 		loss_plot = plot_losses(model.losses)
 		acc_plot = plot_accuracy(model.train_accuracies)
 
-		loss_plot.write_html(basepath + "model_losses.html")
-		acc_plot.write_html(basepath + "accuracy_plot.html")
+		loss_plot.write_html(ensure_folder_exists('./viz/') + "model_losses.html")
+		acc_plot.write_html(ensure_folder_exists('./viz/') + "accuracy_plot.html")
 
 		norm_param = np.vstack((means, stds))
 		
-		save_model_parameters(model.weights, model.bias, class_name, norm_param, ensure_folder_exists('../weights/') + "weights.json")
+		save_model_parameters(model.weights, model.bias, class_name, norm_param, ensure_folder_exists('./weights/') + "weights.json")
 	else:
 		print("Error: arg must be:\n>>> python path/to/logreg_train.py.py dataset.csv [opional outfile_basepath]")
