@@ -15,7 +15,6 @@ def z_normalize(data):
 	mean = np.mean(data, axis=0)
 	std = np.std(data, axis=0, ddof=1)  # Use ddof=1 for sample standard deviation
 	normalized_data = (data - mean) / std
-	
 	return normalized_data, mean, std
 
 def save_model_parameters(weights, bias, class_name, norm_params, file_path):
